@@ -1,8 +1,13 @@
 import { useForm } from "@tanstack/react-form";
 import { loginSchema } from "../../schemas/loginSchema";
 import FormInput from "../../components/FormInput";
+import { useAuthStore } from "../../store/authStore";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const login = useAuthStore((state) => state.login);
+
   const form = useForm({
     defaultValues: {
       email: "",
@@ -13,13 +18,32 @@ function Login() {
       onChange: loginSchema,
     },
 
-    onSubmit: async ({ value }) => {
-      console.log("login successfully", value);
+    onSubmit: ({ value }) => {
+      const user = login(value);
+
+      if (!user) {
+        console.log("login failed");
+        return;
+      }
+
+      console.log("login successfully");
+
+      if (user.role === "admin") {
+        navigate("/dashboard");
+      } else {
+        navigate("/");
+      }
     },
   });
   return (
     <div className="container bg-white w-2xl mx-auto p-6 translate-y-50 rounded-lg shadow-md">
-      <form onSubmit={(e)=>{e.preventDefault(); form.handleSubmit()}} className="flex flex-col gap-4">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.handleSubmit();
+        }}
+        className="flex flex-col gap-4"
+      >
         <form.Field name="email">
           {(field) => (
             <FormInput
@@ -40,7 +64,10 @@ function Login() {
             />
           )}
         </form.Field>
-        <button type="submit" className="bg-yellow-500 text-white cursor-pointer shadow rounded-md mt-6 py-2">
+        <button
+          type="submit"
+          className="bg-yellow-500 text-white cursor-pointer shadow rounded-md mt-6 py-2"
+        >
           Login
         </button>
       </form>
