@@ -9,6 +9,7 @@ export type LoginFormData = z.infer<typeof loginSchema>;
 
 export const userType = loginSchema.extend({
   id: z.number(),
+  name: z.string(),
   avatar: z.string(),
   role: z.string(),
 });

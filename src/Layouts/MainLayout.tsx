@@ -2,7 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 
 function MainLayout() {
   return (
-    <div className="h-screen bg-yellow-50 flex flex-col">
+    <div className="min-h-screen bg-yellow-50 flex flex-col">
       <header className="px-8 py-6 flex justify-between items-center border-b border-b-yellow-200 shadow-2xs">
         <div className="logo text-yellow-500 font-bold italic text-3xl">
           Koki Store

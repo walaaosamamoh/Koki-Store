@@ -1,24 +1,68 @@
-import { Link, Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
+import Sidebar from "../components/Sidebar"
+import { useState } from "react"
 
 function DashboardLayout() {
+  const [isSidebarOpen,setIsSidebarOpen]= useState(false)
+  const [isCollapesed,setIsCollapesed]= useState(false)
+
+  const toggleSidebar=()=>{
+      if (window.innerWidth < 768) {
+      // Mobile
+      setIsSidebarOpen(!isSidebarOpen)
+    } else {
+      // Desktop
+      setIsCollapesed(!isCollapesed)
+    }
+    }
   return (
-    <div className="h-screen bg-yellow-50 flex">
-      <aside className="w-50 bg-gray-200 py-4 px-2">
-        <h3 className="text-xl font-semibold">Dashboard</h3>
+     <div className="h-screen flex">
+     <Sidebar
+      isSidebarOpen={isSidebarOpen}
+      isCollapesed={isCollapesed}
+      onClose={()=>setIsSidebarOpen(false)}
+      onToggle={setIsCollapesed}
+    />
 
-        <Link to="/dashboard">Home</Link>
-        <br />
+    {isSidebarOpen && (
+      <div
+      className="fixed inset-0 bg-black/50 z-40 md:hidden"
+      onClick={()=>{setIsSidebarOpen(false)}}
+    ></div>
+    )}
 
-        <Link to="/dashboard/categories">Categories</Link>
-        <br />
-
-        <Link to="/dashboard/products">Products</Link>
-      </aside>
-
-      <main className="p-5">
-        <Outlet />
-      </main>
+    
+    <div className="flex flex-col flex-1 overflow-y-auto">
+      {/*  header  */}
+      <div className="flex items-center justify-between p-5 bg-white border-b border-gray-200">
+        <div className="flex items-center px-4">
+          <button
+            onClick={toggleSidebar}
+            className="text-gray-500 focus:outline-none focus:text-gray-700 cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div className="min-h-screen bg-yellow-50">
+        <Outlet/>
     </div>
+    </div>
+    
+     </div>
   )
 }
 

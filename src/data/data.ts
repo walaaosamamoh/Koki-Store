@@ -1,4 +1,9 @@
-export const users = [
+import type { User } from "../schemas/loginSchema";
+import type { category } from "../types/categories";
+import type { order } from "../types/orders";
+import type { product } from "../types/products";
+
+export const users: User[] = [
   {
     id: 1,
     name: "Ahmed Ali",
@@ -25,7 +30,7 @@ export const users = [
   },
 ];
 
-export const categories = [
+export const categories: category[] = [
   {
     id: 1,
     title: "Electronics",
@@ -58,7 +63,7 @@ export const categories = [
   },
 ];
 
-export const products = [
+export const products: product[] = [
   {
     id: 1,
     categoryId: 1,
@@ -178,7 +183,7 @@ export const products = [
   },
 ];
 
-export const orders = [
+export const orders: order[] = [
   {
     id: 1,
     userId: 1,
