@@ -10,10 +10,17 @@ type DashboardStore = {
   orders: order[];
   categories: category[];
   products: product[];
+  deleteCategory: (value: number) => void;
 };
-export const useDashboardStore = create<DashboardStore>(() => ({
+export const useDashboardStore = create<DashboardStore>((set) => ({
   users: users,
   orders: orders,
   categories: categories,
   products: products,
+
+  deleteCategory: (id: number) => {
+    set((state) => ({
+      categories: state.categories.filter((category) => category.id !== id),
+    }));
+  },
 }));

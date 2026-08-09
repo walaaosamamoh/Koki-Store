@@ -9,6 +9,10 @@ import Login from "../pages/auth/Login";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import Categories from "../pages/dashboard/Categories";
+import CreateCategory from "../pages/dashboard/CreateCategory";
+import ShowCategory from "../pages/dashboard/ShowCategory";
+import UpdateCategory from "../pages/dashboard/UpdateCategory";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +50,22 @@ export const router = createBrowserRouter([
           {
             path: "/dashboard",
             element: <Dashboard />,
+          },
+          {
+            path: "/categories",
+            element: <Categories />,
+          },
+          {
+            path: "/create-category",
+            element: <CreateCategory />,
+          },
+          {
+            path: "/show-category/:id",
+            element: <ShowCategory />,
+          },
+          {
+            path: "/update-category/:id",
+            element: <UpdateCategory />,
           },
         ],
       },
