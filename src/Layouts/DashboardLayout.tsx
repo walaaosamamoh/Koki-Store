@@ -57,7 +57,7 @@ function DashboardLayout() {
           </button>
         </div>
       </div>
-      <div className="min-h-screen bg-yellow-50">
+      <div className="h-screen overflow-auto bg-yellow-50">
         <Outlet/>
     </div>
     </div>
