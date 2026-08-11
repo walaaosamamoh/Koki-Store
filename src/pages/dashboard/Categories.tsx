@@ -1,10 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import { useDashboardStore } from "../../store/dashboard";
+import { useGetCategories } from "../../hooks/useGetCategories";
+import { useDeleteCategory } from "../../hooks/useDeleteCategory";
 
 export default function Categories() {
-  const categories = useDashboardStore((state) => state.categories);
-  const deleteCategory = useDashboardStore((state) => state.deleteCategory);
+  const {data: categories, isLoading, isError} = useGetCategories();
+  const deleteMutation = useDeleteCategory();
   const navigate = useNavigate();
+
+  if(isLoading){
+    return(
+      <div>Loading...</div>
+    )
+  }
+
+  if(isError){
+    return(
+      <div>Failed to load categories</div>
+    )
+  }
 
   return (
     <div className="overflow-y-auto bg-white rounded-xl shadow-sm border border-gray-200 m-8">
@@ -59,8 +72,8 @@ export default function Categories() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {categories.map((category) => (
-              <tr key="category.id" className="hover:bg-gray-50">
+            {categories?.map((category) => (
+              <tr key={category.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className="text-sm font-medium text-gray-900">
                     {category.id}
@@ -130,7 +143,7 @@ export default function Categories() {
                     </button>
 
                     <button
-                      onClick={() => deleteCategory(category.id)}
+                      onClick={() => deleteMutation.mutate(category.id)}
                       title="delete"
                       className="text-red-600 hover:text-red-800 transition-colors p-1 cursor-pointer"
                     >
