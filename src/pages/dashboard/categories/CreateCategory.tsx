@@ -1,6 +1,6 @@
 import { useForm } from "@tanstack/react-form";
-import { categorySchema } from "../../schemas/categorySchema";
-import { useCreateCategory } from "../../hooks/useCreateCategory";
+import { categorySchema } from "../../../schemas/categorySchema";
+import { useCreateCategory } from "../../../hooks/useCreateCategory";
 
 export default function CreateCategory() {
   const createMutation = useCreateCategory();

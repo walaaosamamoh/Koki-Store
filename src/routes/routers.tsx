@@ -7,12 +7,13 @@ import About from "../pages/main/About";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../pages/auth/Login";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import Dashboard from "../pages/dashboard/Dashboard";
+import Dashboard from "../pages/dashboard/categories/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
-import Categories from "../pages/dashboard/Categories";
-import CreateCategory from "../pages/dashboard/CreateCategory";
-import ShowCategory from "../pages/dashboard/ShowCategory";
-import UpdateCategory from "../pages/dashboard/UpdateCategory";
+import Categories from "../pages/dashboard/categories/Categories";
+import CreateCategory from "../pages/dashboard/categories/CreateCategory";
+import ShowCategory from "../pages/dashboard/categories/ShowCategory";
+import UpdateCategory from "../pages/dashboard/categories/UpdateCategory";
+import Products from "../pages/dashboard/products/Products";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
           {
             path: "/update-category/:id",
             element: <UpdateCategory />,
+          },
+          {
+            path: "/products",
+            element: <Products />,
           },
         ],
       },

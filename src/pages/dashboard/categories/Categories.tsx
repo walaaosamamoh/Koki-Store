@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useGetCategories } from "../../hooks/useGetCategories";
-import { useDeleteCategory } from "../../hooks/useDeleteCategory";
+import { useGetCategories } from "../../../hooks/useGetCategories";
+import { useDeleteCategory } from "../../../hooks/useDeleteCategory";
 
 export default function Categories() {
   const {data: categories, isLoading, isError} = useGetCategories();
@@ -54,19 +54,19 @@ export default function Categories() {
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="cat-header">
                 Category ID
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="cat-header">
                 Image
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="cat-header">
                 Title
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="cat-header">
                 Description
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="cat-header">
                 Actions
               </th>
             </tr>

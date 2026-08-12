@@ -1,4 +1,4 @@
-import { useDashboardStore } from "../../store/dashboard"
+import { useDashboardStore } from "../../../store/dashboard"
 
 function Dashboard() {
   const users = useDashboardStore((state)=>state.users)

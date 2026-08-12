@@ -1,7 +1,7 @@
 import { useForm } from "@tanstack/react-form";
-import { categorySchema } from "../../schemas/categorySchema";
-import { useUpdateCategory } from "../../hooks/useUpdateCategory";
-import { useGetCategory } from "../../hooks/useGetCategory";
+import { categorySchema } from "../../../schemas/categorySchema";
+import { useUpdateCategory } from "../../../hooks/useUpdateCategory";
+import { useGetCategory } from "../../../hooks/useGetCategory";
 import { useParams } from "react-router-dom";
 
 export default function CreateCategory() {
