@@ -1,4 +1,4 @@
-import { categories } from "../data/data";
+import { categories, products } from "../data/data";
 import type { category, CategoryFormData } from "../schemas/categorySchema";
 
 export const getCategories = async (): Promise<category[]> => {
@@ -48,4 +48,8 @@ export const deleteCategory = async (id: number): Promise<void> => {
     throw new Error("Category not found");
   }
   categories.splice(index, 1);
+};
+
+export const getProductsByCategoryId = async (id: number) => {
+  return products.filter((prod) => prod.categoryId === id);
 };
