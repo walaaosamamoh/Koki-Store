@@ -20,8 +20,26 @@ export const createCategory = async (
     id: Date.now(),
     ...data,
   };
+  categories.push(newCategory);
   console.log(newCategory);
   return newCategory;
+};
+
+export const updateCategory = async ({
+  data,
+  id,
+}: {
+  data: CategoryFormData;
+  id: number;
+}): Promise<category> => {
+  const index = categories.findIndex((cat) => cat.id === id);
+  if (index === -1) {
+    throw new Error("Category not found");
+  }
+  const updatedCategory = { ...categories[index], ...data, id };
+  categories[index] = updatedCategory;
+  console.log("updated category: ", updatedCategory);
+  return updatedCategory;
 };
 
 export const deleteCategory = async (id: number): Promise<void> => {
