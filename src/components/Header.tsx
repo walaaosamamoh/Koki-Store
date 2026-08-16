@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
+import { useCartStore } from "../store/cartStore";
 
 export default function Header() {
   const { logout } = useAuthStore();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const {cart}= useCartStore()
+
   return (
     <header className="px-8 py-6 flex justify-between items-center border-b border-b-yellow-200 shadow-2xs">
       <div className="logo text-yellow-500 font-bold italic text-3xl">
@@ -28,7 +32,13 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex items-center gap-4">
-        <Link to="/cart" className="text-xl hover:text-blue-600 transition">
+        <Link to="/cart" className="relative text-xl hover:text-blue-600 transition">
+          {cart.length > 0 && (
+            <div className="absolute -top-1 -left-1 w-4 h-4 rounded-full flex justify-center items-center text-white bg-red-600 ">
+            <span className="text-xs font-bold">{cart.length}</span>
+
+            </div>
+          )}
           🛒
         </Link>
 

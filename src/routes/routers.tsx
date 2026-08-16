@@ -15,6 +15,7 @@ import ShowCategory from "../pages/dashboard/categories/ShowCategory";
 import UpdateCategory from "../pages/dashboard/categories/UpdateCategory";
 import Products from "../pages/dashboard/products/Products";
 import ProductDetails from "../pages/main/ProductDetails";
+import Cart from "../pages/main/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
           {
             path: "/product-details/:id",
             element: <ProductDetails />,
+          },
+          {
+            path: "/cart",
+            element: <Cart />,
           },
         ],
       },

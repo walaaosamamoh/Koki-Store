@@ -8,6 +8,9 @@ type cartProduct = product & {
 type CartStore = {
   cart: cartProduct[];
   addToCart: (product: product, qty: number) => void;
+  increaseQuantity: (productId: number) => void;
+  decreaseQuantity: (productId: number) => void;
+  removeFromCart: (productId: number) => void;
 };
 
 export const useCartStore = create<CartStore>((set) => ({
@@ -47,5 +50,31 @@ export const useCartStore = create<CartStore>((set) => ({
       };
     });
     console.log(product);
+  },
+
+  increaseQuantity: (productId: number) => {
+    set((state) => ({
+      cart: state.cart.map((item) =>
+        item.id === productId && item.qty < item.stock
+          ? { ...item, qty: item.qty + 1 }
+          : item,
+      ),
+    }));
+  },
+
+  decreaseQuantity: (productId: number) => {
+    set((state) => ({
+      cart: state.cart.map((item) =>
+        item.id === productId && item.qty > 0
+          ? { ...item, qty: item.qty - 1 }
+          : item,
+      ),
+    }));
+  },
+
+  removeFromCart: (productId: number) => {
+    set((state) => ({
+      cart: state.cart.filter((item) => item.id !== productId),
+    }));
   },
 }));
