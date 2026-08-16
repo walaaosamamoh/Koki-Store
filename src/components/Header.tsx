@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import { useCartStore } from "../store/cartStore";
@@ -9,12 +9,26 @@ export default function Header() {
 
   const {cart}= useCartStore()
 
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(()=>{
+    const handleClickOutside = (event: MouseEvent)=>{
+      if(menuRef.current && !menuRef.current.contains(event.target as Node)){
+        setIsProfileOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return()=>{
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  },[])
+
   return (
-    <header className="px-8 py-6 flex justify-between items-center border-b border-b-yellow-200 shadow-2xs">
+    <header className="px-8 py-6 flex justify-between items-center shadow-2xs">
       <div className="logo text-yellow-500 font-bold italic text-3xl">
         Koki Store
       </div>
-      <div className="md:flex gap-4 font-semibold hidden">
+      <div className="md:flex md:items-center gap-4 font-semibold hidden">
         <Link to="/" className="hover:text-yellow-500 transition duration-300">
           Home
         </Link>
@@ -32,7 +46,7 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex items-center gap-4">
-        <Link to="/cart" className="relative text-xl hover:text-blue-600 transition">
+        <Link to="/cart" className="relative text-xl transition">
           {cart.length > 0 && (
             <div className="absolute -top-1 -left-1 w-4 h-4 rounded-full flex justify-center items-center text-white bg-red-600 ">
             <span className="text-xs font-bold">{cart.length}</span>
@@ -42,7 +56,7 @@ export default function Header() {
           🛒
         </Link>
 
-        <div className="hidden md:block relative">
+        <div className="hidden md:block relative" ref={menuRef}>
           <button
             onClick={() =>
               isProfileOpen ? setIsProfileOpen(false) : setIsProfileOpen(true)
@@ -71,7 +85,7 @@ export default function Header() {
           )}
         </div>
 
-        <div className="md:hidden relative">
+        <div className="md:hidden relative" ref={menuRef}>
           <button
             className="text-gray-800 text-3xl"
             onClick={() =>
