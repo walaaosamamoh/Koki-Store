@@ -16,7 +16,7 @@ export default function Card({ product }: CardProps) {
   const [addedProductId, setAddedProductId] = useState<number | null>( null);
 
   const handleAddToCart = (prod:product) => {
-    addToCart(prod)
+    addToCart(prod, 1)
     setAddedProductId(prod.id);
     setTimeout(() => {
       setAddedProductId(null);

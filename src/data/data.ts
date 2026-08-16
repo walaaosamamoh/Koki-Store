@@ -161,7 +161,7 @@ export const products: product[] = [
     description: "Wooden dining table",
     image: "https://picsum.photos/300?11",
     price: 250,
-    stock: 3,
+    stock: 0,
   },
   {
     id: 12,
