@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useGetProduct } from "../../hooks/products/useGetProduct"
 import CartSvg from "../../components/icons/CartSvg"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PlusSvg from "../../components/icons/PlusSvg"
 import MinusSvg from "../../components/icons/MinusSvg"
 import { useCartStore } from "../../store/cartStore"
@@ -9,30 +9,45 @@ import SimilarProducts from "../../components/SimilarProducts"
 
 export default function ProductDetails() {
     const {id} = useParams()
-    const {data:product} = useGetProduct(Number(id))
+    const {data:product, isLoading, isError} = useGetProduct(Number(id))
 
     const addToCart = useCartStore((state)=>state.addToCart)
 
     const [added, setAdded]= useState(false)
-   
+    const [onStock, setOnStock] = useState(0)
     const [count, setCount] = useState(1)
+
+    useEffect(() => {
+    if (product) {
+      setOnStock(product.stock);
+    }
+  }, [product]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Failed to load product</div>;
+  }
 
     if(!product){
       return null
     }
 
     const totalPrice = product.price * count;
-    const onStock = product.stock - count + 1 
 
     const decreaseQty=() =>{
       if (count > 1) {
        setCount((prev)=> prev - 1)
+       setOnStock((prev)=> prev + 1)
       }
     }
 
     const increaseQty=()=> {
       if (count < product?.stock) {
         setCount((prev)=> prev + 1)
+        setOnStock((prev)=> prev - 1)
       }
     }
 
@@ -47,6 +62,9 @@ export default function ProductDetails() {
     const handleAddToCart=() =>{
       addToCart(product, count)
       setCount(1)
+      if (onStock > 0) {
+      setOnStock((prev) => prev - 1);
+    }
       handleAdded()
     }
 

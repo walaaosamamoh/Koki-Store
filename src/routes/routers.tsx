@@ -16,6 +16,7 @@ import UpdateCategory from "../pages/dashboard/categories/UpdateCategory";
 import Products from "../pages/dashboard/products/Products";
 import ProductDetails from "../pages/main/ProductDetails";
 import Cart from "../pages/main/Cart";
+import Checkout from "../pages/main/Checkout";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
           {
             path: "/cart",
             element: <Cart />,
+          },
+          {
+            path: "/checkout",
+            element: <Checkout />,
           },
         ],
       },
