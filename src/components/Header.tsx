@@ -9,17 +9,19 @@ export default function Header() {
 
   const {cart}= useCartStore()
 
-  const menuRef = useRef<HTMLDivElement>(null)
+  const desktopMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null); 
 
   useEffect(()=>{
     const handleClickOutside = (event: MouseEvent)=>{
-      if(menuRef.current && !menuRef.current.contains(event.target as Node)){
+      if(desktopMenuRef.current && !desktopMenuRef.current.contains(event.target as Node)
+      && mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)){
         setIsProfileOpen(false)
       }
     }
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("click", handleClickOutside)
     return()=>{
-      document.removeEventListener("mousedown", handleClickOutside)
+      document.removeEventListener("click", handleClickOutside)
     }
   },[])
 
@@ -56,7 +58,7 @@ export default function Header() {
           🛒
         </Link>
 
-        <div className="hidden md:block relative" ref={menuRef}>
+        <div className="hidden md:block relative" ref={mobileMenuRef}>
           <button
             onClick={() =>
               isProfileOpen ? setIsProfileOpen(false) : setIsProfileOpen(true)
@@ -70,7 +72,7 @@ export default function Header() {
           {isProfileOpen && (
             <div className="absolute right-0 mt-2 w-36 bg-white text-gray-800 rounded-md shadow-md transition py-2 z-50">
               <Link
-                to="/setting"
+                to=""
                 className="block w-full px-2 py-1 hover:bg-gray-100"
               >
                 Setting
@@ -85,7 +87,7 @@ export default function Header() {
           )}
         </div>
 
-        <div className="md:hidden relative" ref={menuRef}>
+        <div className="md:hidden relative" ref={desktopMenuRef}>
           <button
             className="text-gray-800 text-3xl"
             onClick={() =>

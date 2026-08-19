@@ -14,7 +14,7 @@ export default function Cart() {
     <div>
       <div className="min-h-screen bg-gray-50 py-8 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-semibold text-gray-900 mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-8">
             Shopping Cart
           </h1>
 
