@@ -61,7 +61,7 @@ export default function HeroSection() {
                 <button
                   key={category.id}
                   className={`w-3 h-3 rounded-full ${
-                    currentIndex === index ? "bg-white" : "bg-gray-400"
+                    currentIndex === index ? "bg-yellow-500" : "bg-gray-400"
                   }`}
                   onClick={() => setCurrentIndex(index)}  
                 ></button>
