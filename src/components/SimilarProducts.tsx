@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useCartStore } from "../store/cartStore";
 import type { product } from "../types/products";
 
-export default function SimilarProducts() {
+export default function SimilarProducts(currentProduct:product) {
   const { data: products, isLoading, isError } = useGetProducts();
   const navigate = useNavigate();
 
@@ -20,8 +20,12 @@ export default function SimilarProducts() {
   }
 
   if (isError) {
-    return <div>Failed to load categories</div>;
+    return <div>Failed to load products</div>;
   }
+
+  const similarProducts = products?.filter(
+    (product)=> product.categoryId === currentProduct.categoryId && product.id !== currentProduct.id
+  )
 
   const handleAddToCart = (prod: product) => {
     addToCart(prod, 1);
@@ -51,12 +55,9 @@ export default function SimilarProducts() {
           },
         }}
         spaceBetween={20}
-        pagination={{
-          clickable: true,
-        }}
         className="mySwiper"
       >
-        {products?.map((product) => (
+        {similarProducts?.map((product) => (
           <SwiperSlide key={product.id} className="p-1">
             <div
               onClick={() => navigate(`/product-details/${product.id}`)}
@@ -81,7 +82,7 @@ export default function SimilarProducts() {
                         handleAddToCart(product);
                       }}
                     >
-                      {addedProductId == product.id ? (
+                      {addedProductId === product.id ? (
                         <button
                           className="flex items-center justify-center bg-green-400 shadow-md rounded-full p-2"
                           disabled
@@ -109,7 +110,7 @@ export default function SimilarProducts() {
                     </div>
                   ) : (
                     <div className="text-red-500 text-sm font-semibold">
-                      sold out
+                      Sold out
                     </div>
                   )}
                 </div>
