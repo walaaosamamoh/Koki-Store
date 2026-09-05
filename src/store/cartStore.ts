@@ -19,38 +19,35 @@ export const useCartStore = create<CartStore>((set) => ({
 
   addToCart: (product, qty) => {
     set((state) => {
-      const existingProd = state.cart.find((prod) => prod.id === product.id);
-
-      let updatedCart;
+      const existingProd = state.cart.find(
+        (prod) => prod.id === product.id
+      );
 
       if (existingProd) {
         const totalQty = existingProd.qty + qty;
 
-        updatedCart = state.cart.map((prod) =>
-          prod.id === product.id
-            ? {
-                ...prod,
-                qty: Math.min(totalQty, product.stock),
-              }
-            : prod,
-        );
-      } else {
-        updatedCart = [
+        return {
+          cart: state.cart.map((prod) =>
+            prod.id === product.id
+              ? {
+                  ...prod,
+                  qty: Math.min(totalQty, product.stock),
+                }
+              : prod,
+          ),
+        };
+      }
+
+      return {
+        cart: [
           ...state.cart,
           {
             ...product,
-            qty,
+            qty: Math.min(qty, product.stock),
           },
-        ];
-      }
-
-      console.log("Updated cart:", updatedCart);
-
-      return {
-        cart: updatedCart,
+        ],
       };
     });
-    console.log(product);
   },
 
   increaseQuantity: (productId: number) => {
@@ -66,7 +63,7 @@ export const useCartStore = create<CartStore>((set) => ({
   decreaseQuantity: (productId: number) => {
     set((state) => ({
       cart: state.cart.map((item) =>
-        item.id === productId && item.qty > 0
+        item.id === productId && item.qty > 1
           ? { ...item, qty: item.qty - 1 }
           : item,
       ),
