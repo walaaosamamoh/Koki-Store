@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import { useCartStore } from "../store/cartStore";
 
@@ -27,25 +27,25 @@ export default function Header() {
 
   return (
     <header className="px-8 py-6 flex justify-between items-center shadow-2xs">
-      <div className="logo text-yellow-500 font-bold italic text-3xl">
+      <div className="logo font-bold italic text-3xl">
         Koki Store
       </div>
       <div className="md:flex md:items-center gap-4 font-semibold hidden">
-        <Link to="/" className="hover:text-yellow-500 transition duration-300">
+        <NavLink to="/" className={({isActive})=>`${isActive ? 'text-yellow-500' : 'hover:text-yellow-500'} transition duration-300`}>
           Home
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/about"
-          className="hover:text-yellow-500 transition duration-300"
+          className={({isActive})=>`${isActive ? 'text-yellow-500' : 'hover:text-yellow-500'} transition duration-300`}
         >
           About
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/contact"
-          className="hover:text-yellow-500 transition duration-300"
+          className={({isActive})=>`${isActive ? 'text-yellow-500' : 'hover:text-yellow-500'} transition duration-300`}
         >
           Contact
-        </Link>
+        </NavLink>
       </div>
       <div className="flex items-center gap-4">
         <Link to="/cart" className="relative text-xl transition">
