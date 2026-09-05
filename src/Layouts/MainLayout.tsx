@@ -9,7 +9,7 @@ function MainLayout() {
         <Outlet />
       </main>
       <footer className="shrink-0 bg-black px-8 py-6 text-center text-white">
-        Koki Store
+        &copy; {new Date().getFullYear()} Koki Store. All rights reserved.
       </footer>
     </div>
   );

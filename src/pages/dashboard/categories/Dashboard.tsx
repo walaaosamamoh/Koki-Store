@@ -1,10 +1,20 @@
-import { useDashboardStore } from "../../../store/dashboard"
+import { useGetOrders } from "../../../hooks/orders/useGetOrders";
+import { useGetProducts } from "../../../hooks/products/useGetProducts";
+import { useGetCategories } from "../../../hooks/useGetCategories";
+import { useGetUsers } from "../../../hooks/users/useGetUsers";
 
 function Dashboard() {
-  const users = useDashboardStore((state)=>state.users)
-  const orders = useDashboardStore((state)=>state.orders)
-  const categories = useDashboardStore((state)=>state.categories)
-  const products = useDashboardStore((state)=>state.products)
+  const {data: users, isLoading: isUsersLoading, isError: isUsersError} = useGetUsers();
+  const {data: orders, isLoading: isOrdersLoading, isError: isOrdersError} = useGetOrders();
+  const {data: categories, isLoading: isCategoriesLoading, isError: isCategoriesError} = useGetCategories();
+  const {data: products, isLoading: isProductsLoading, isError: isProductsError} = useGetProducts();
+
+  if (isUsersLoading || isOrdersLoading || isProductsLoading || isCategoriesLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isUsersError || isOrdersError || isProductsError || isCategoriesError) {
+    return <div>Error loading data</div>;
+  }
   return (
     <div className="p-6">
     {/*  Stats Cards  */}
@@ -16,7 +26,7 @@ function Dashboard() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Users</p>
-            <p className="text-3xl font-bold text-gray-900 mt-2">{ users.filter((user) => user.role === "user").length }</p>
+            <p className="text-3xl font-bold text-gray-900 mt-2">{ users?.filter((user) => user.role === "user").length }</p>
           </div>
           <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
             <svg
@@ -44,7 +54,7 @@ function Dashboard() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Orders</p>
-            <p className="text-3xl font-bold text-gray-900 mt-2">{ orders.length }</p>
+            <p className="text-3xl font-bold text-gray-900 mt-2">{ orders?.length }</p>
           </div>
           <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
             <svg
@@ -72,7 +82,7 @@ function Dashboard() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Categories</p>
-            <p className="text-3xl font-bold text-gray-900 mt-2">{categories.length}</p>
+            <p className="text-3xl font-bold text-gray-900 mt-2">{categories?.length}</p>
           </div>
           <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
             <svg
@@ -100,7 +110,7 @@ function Dashboard() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Products</p>
-            <p className="text-3xl font-bold text-gray-900 mt-2">{products.length}</p>
+            <p className="text-3xl font-bold text-gray-900 mt-2">{products?.length}</p>
           </div>
           <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
             <svg
@@ -165,7 +175,7 @@ function Dashboard() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {orders.slice(0,3).map((order)=>(
+            {orders?.slice(0,3).map((order)=>(
             <tr key={order.id} className="hover:bg-gray-50">
               <td className="px-6 py-4 whitespace-nowrap">
                 <span className="text-sm font-medium text-gray-900">{ order.id }</span>
@@ -173,25 +183,25 @@ function Dashboard() {
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
                   <img
-                    src={users.find((user)=>user.id===order.id)?.avatar}
+                    src={users?.find((user)=>user.id===order.id)?.avatar}
                     alt="Customer"
                     className="w-8 h-8 rounded-full mr-3"
                   />
                   <div>
                     <div className="text-sm font-medium text-gray-900">
-                      { users.find((user)=>user.id===order.id)?.name }
+                      { users?.find((user)=>user.id===order.id)?.name }
                     </div>
                     <div className="text-sm text-gray-500">
-                      { users.find((user)=>user.id===order.id)?.email }
+                      { users?.find((user)=>user.id===order.id)?.email }
                     </div>
                   </div>
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                {order.products.map((prod,index)=>(
+                {order.products.map((prod:{ productId: number, qty: number },index:number)=>(
                   <span key={prod.productId}>
                   { index > 0 && ','}
-                  { products.find((product)=>product.id===prod.productId)?.title }</span
+                  { products?.find((product)=>product.id===prod.productId)?.title }</span
                 >
                 ))}              
               </td>
