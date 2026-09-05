@@ -12,3 +12,11 @@ export const getProduct = async (id: number): Promise<product> => {
   }
   return product;
 };
+
+export const deleteProduct = async (id: number): Promise<void> => {
+  const index = products.findIndex((prod) => prod.id === id);
+  if (index === -1) {
+    throw new Error("Product not found");
+  }
+  products.splice(index, 1);
+}

@@ -1,22 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { useGetCategories } from "../../../hooks/useGetCategories";
-import { useDeleteCategory } from "../../../hooks/useDeleteCategory";
+import { useGetProducts } from "../../../hooks/products/useGetProducts";
+import { useDeleteProduct } from "../../../hooks/products/useDeleteProduct";
 
-export default function Categories() {
-  const {data: categories, isLoading, isError} = useGetCategories();
-  const deleteMutation = useDeleteCategory();
+export default function Products() {
+  const { data: products, isLoading, isError } = useGetProducts();
+  const deleteMutation = useDeleteProduct();
   const navigate = useNavigate();
 
-  if(isLoading){
-    return(
-      <div>Loading...</div>
-    )
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  if(isError){
-    return(
-      <div>Failed to load categories</div>
-    )
+  if (isError) {
+    return <div>Failed to load products</div>;
   }
 
   return (
@@ -24,13 +20,13 @@ export default function Categories() {
       <div className="px-6 py-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Categories</h3>
+            <h3 className="text-lg font-semibold text-gray-900">Products</h3>
             <p className="text-gray-600 text-sm">
-              Manage and organize your categories
+              Manage and organize your products
             </p>
           </div>
           <button
-            onClick={() => navigate("/create-category")}
+            onClick={() => navigate("/create-product")}
             className="px-4 py-2 flex justify-center items-center gap-2 font-semibold bg-gray-600 text-white hover:bg-gray-700 transition rounded-md"
           >
             <svg
@@ -46,7 +42,7 @@ export default function Categories() {
                 d="M12 4v16m8-8H4"
               ></path>
             </svg>
-            <span className="hidden lg:block">Add New Category</span>
+            <span className="hidden lg:block">Add New Product</span>
           </button>
         </div>
       </div>
@@ -55,7 +51,7 @@ export default function Categories() {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Category ID
+                Product ID
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Image
@@ -67,36 +63,51 @@ export default function Categories() {
                 Description
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Price
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Stock
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {categories?.map((category) => (
-              <tr key={category.id} className="hover:bg-gray-50">
+            {products?.map((product) => (
+              <tr key={product.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className="text-sm font-medium text-gray-900">
-                    {category.id}
+                    {product.id}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <img
-                    src={category.image}
+                    src={product.image}
                     alt="Customer"
                     className="w-14 h-14 rounded mr-3"
                   />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {category.title}
+                  {product.title}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {category.description}
+                  {product.description}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">
+                  ${product.price.toFixed(2)}
+                </td>
+                <td
+                  className={`px-6 py-4 whitespace-nowrap text-sm font-semibold 
+                  ${product.stock > 10 ? "text-green-600" : "text-red-600"}`}
+                >
+                  {product.stock}
                 </td>
 
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => navigate(`/show-category/${category.id}`)}
+                      onClick={() => navigate(`/show-product/${product.id}`)}
                       title="show"
                       className="text-green-600 hover:text-green-800 transition-colors p-1 cursor-pointer"
                     >
@@ -121,9 +132,7 @@ export default function Categories() {
                       </svg>
                     </button>
                     <button
-                      onClick={() =>
-                        navigate(`/update-category/${category.id}`)
-                      }
+                      onClick={() => navigate(`/update-product/${product.id}`)}
                       title="update"
                       className="text-blue-600 hover:text-blue-800 transition-colors p-1 cursor-pointer"
                     >
@@ -143,7 +152,7 @@ export default function Categories() {
                     </button>
 
                     <button
-                      onClick={() => deleteMutation.mutate(category.id)}
+                      onClick={() => deleteMutation.mutate(product.id)}
                       title="delete"
                       className="text-red-600 hover:text-red-800 transition-colors p-1 cursor-pointer"
                     >
