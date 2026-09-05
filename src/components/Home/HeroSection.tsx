@@ -34,7 +34,7 @@ export default function HeroSection() {
     <div>
       <div className="relative overflow-hidden w-full h-96 md:h-125">
         {categories?.map((category, index) => (
-          <div>
+          <div key={category.id}>
             {currentIndex === index && (
               <div
                 key={category.id}
