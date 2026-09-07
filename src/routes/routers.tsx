@@ -17,6 +17,7 @@ import Products from "../pages/dashboard/products/Products";
 import ProductDetails from "../pages/main/ProductDetails";
 import Cart from "../pages/main/Cart";
 import Checkout from "../pages/main/Checkout";
+import ShowProduct from "../pages/dashboard/products/ShowProduct";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
           {
             path: "/products",
             element: <Products />,
+          },
+          {
+            path: "/show-product/:id",
+            element: <ShowProduct />,
           },
         ],
       },
