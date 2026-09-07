@@ -93,12 +93,12 @@ export default function CreateCategory() {
               >
                 Description
               </label>
-              <input
-                type="text"
+              <textarea
                 id="description"
                 value={field.state.value}
                 onChange={(e) => field.handleChange(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 outline-none rounded-md"
+                rows={4}
+                className="w-full px-3 py-2 border border-gray-300 outline-none rounded-md resize-none"
               />
               {field.state.meta.isTouched && (
                 <p id={`${field.name}-error`} className="text-red-500 text-sm">
