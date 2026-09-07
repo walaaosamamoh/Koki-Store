@@ -49,7 +49,7 @@ export default function Sidebar({isCollapesed,isSidebarOpen,onClose,onToggle}:si
           key={item.name}
           to={item.to}
           className={`flex items-center py-4 px-4 text-gray-100 hover:bg-gray-700 ${isCollapesed ? 'md:justify-center' : 'px-4'}`}
-          active-className="bg-gray-700"
+          active-classname="bg-gray-700"
           onClick={onClose}
         >
           <item.icon/>
