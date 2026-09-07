@@ -1,7 +1,7 @@
+import type { category } from "../schemas/categorySchema";
 import type { User } from "../schemas/loginSchema";
-import type { category } from "../types/categories";
+import type { product } from "../schemas/productSchema";
 import type { order } from "../types/orders";
-import type { product } from "../types/products";
 
 export const users: User[] = [
   {
