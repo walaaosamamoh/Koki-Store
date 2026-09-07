@@ -1,7 +1,7 @@
-import { useGetOrders } from "../../../hooks/orders/useGetOrders";
-import { useGetProducts } from "../../../hooks/products/useGetProducts";
-import { useGetCategories } from "../../../hooks/useGetCategories";
-import { useGetUsers } from "../../../hooks/users/useGetUsers";
+import { useGetOrders } from "../../hooks/orders/useGetOrders";
+import { useGetProducts } from "../../hooks/products/useGetProducts";
+import { useGetCategories } from "../../hooks/useGetCategories";
+import { useGetUsers } from "../../hooks/users/useGetUsers";
 
 function Dashboard() {
   const {data: users, isLoading: isUsersLoading, isError: isUsersError} = useGetUsers();

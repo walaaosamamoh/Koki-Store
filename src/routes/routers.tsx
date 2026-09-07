@@ -7,7 +7,7 @@ import About from "../pages/main/About";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../pages/auth/Login";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import Dashboard from "../pages/dashboard/categories/Dashboard";
+import Dashboard from "../pages/dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import Categories from "../pages/dashboard/categories/Categories";
 import CreateCategory from "../pages/dashboard/categories/CreateCategory";
