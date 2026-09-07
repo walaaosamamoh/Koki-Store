@@ -2,12 +2,14 @@ import { useForm } from "@tanstack/react-form";
 import { categorySchema } from "../../../schemas/categorySchema";
 import { useUpdateCategory } from "../../../hooks/useUpdateCategory";
 import { useGetCategory } from "../../../hooks/useGetCategory";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function CreateCategory() {
+export default function UpdateCategory() {
   const updateMutation = useUpdateCategory();
   const {id}= useParams()
   const {data: Category, isLoading} = useGetCategory(Number(id))
+
+  const navigate = useNavigate()
 
   const handleImageUpload = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -39,7 +41,8 @@ export default function CreateCategory() {
     onSubmit: async ({ value }) => {
       try {
         const category = await updateMutation.mutateAsync({data:value,id:Number(id)});
-        console.log("Created:", category);
+        console.log("Updated:", category);
+        navigate("/categories")
       } catch (error) {
         console.error(error);
       }
