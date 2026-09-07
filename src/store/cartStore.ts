@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { product } from "../types/products";
+import type { product } from "../schemas/productSchema";
 
 type cartProduct = product & {
   qty: number;

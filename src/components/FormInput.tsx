@@ -1,8 +1,7 @@
-import type { FieldApi } from "@tanstack/react-form";
-
+import type { AnyFieldApi } from "@tanstack/form-core";
 
 type Props = {
-  field: FieldApi;
+  field: AnyFieldApi;
   label: string;
   type: string;
   placeholder: string;

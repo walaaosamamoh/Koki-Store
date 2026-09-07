@@ -1,75 +1,149 @@
-# React + TypeScript + Vite
+# First Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript + Vite storefront application with dashboard functionality, product management, category management, authentication flow, and cart/checkout features.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is a modern front-end application for a commerce-style system. It includes a customer-facing experience with product browsing, cart, checkout, and contact pages, as well as an admin dashboard for managing categories and products.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- TypeScript
+- Vite
+- React Router
+- TanStack React Form
+- TanStack React Query
+- Zustand
+- Zod
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- User login flow with protected routes
+- Dashboard for admins
+- Product listing and product details
+- Category management
+- Product creation, update, and deletion
+- Cart and checkout flow
+- Responsive layout and reusable UI components
+- Form validation using Zod schemas
+- State management with Zustand
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+first-project/
+├── public/
+├── src/
+│   ├── api/
+│   ├── assets/
+│   ├── components/
+│   ├── data/
+│   ├── hooks/
+│   ├── layouts/
+│   ├── pages/
+│   ├── routes/
+│   ├── schemas/
+│   ├── store/
+│   ├── types/
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── App.css
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── eslint.config.js
+├── README.md
+└── .gitignore
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Before running the project, make sure you have:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18 or later
+- npm
 
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd first-project
 ```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+## Available Scripts
+
+### Development
+
+```bash
+npm run dev
+```
+
+Runs the app in development mode with Vite hot reloading.
+
+### Production Build
+
+```bash
+npm run build
+```
+
+Creates a production build in the `dist` directory.
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+Serves the built app locally for preview.
+
+### Linting
+
+```bash
+npm run lint
+```
+
+Runs ESLint checks against the project.
+
+## Main App Areas
+
+### Client/UI side
+- Home and storefront pages
+- Product details
+- Cart and checkout
+- About and contact pages
+
+### Admin dashboard
+- Dashboard overview
+- Category management
+- Product management
+- Authentication-protected routes
+
+## Forms and Validation
+
+This project uses TanStack React Form with Zod validation schemas. The validation logic is stored in `src/schemas` and is connected to forms used in authentication and CRUD pages.
+
+## State Management
+
+State is managed through:
+
+- Zustand stores in `src/store`
+- React Query hooks in `src/hooks`
+- Local component state for simple UI interactions
+
+## Notes
+
+- The app is structured for modular feature development.
+- The routing setup is organized under `src/routes`.
+- Shared UI is centralized in `src/components`.

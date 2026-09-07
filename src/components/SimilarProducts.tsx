@@ -5,7 +5,8 @@ import { useGetProducts } from "../hooks/products/useGetProducts";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useCartStore } from "../store/cartStore";
-import type { product } from "../types/products";
+import type { product } from "../schemas/productSchema";
+
 
 export default function SimilarProducts(currentProduct:product) {
   const { data: products, isLoading, isError } = useGetProducts();

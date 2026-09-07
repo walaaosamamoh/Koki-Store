@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import type { product } from "../types/products";
+
 import CartSvg from "./icons/CartSvg";
 import { useState } from "react";
 import { useCartStore } from "../store/cartStore";
+import type { product } from "../schemas/productSchema";
 
 type CardProps = {
   product: product;
