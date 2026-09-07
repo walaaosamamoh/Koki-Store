@@ -1,5 +1,5 @@
 import { products } from "../data/data";
-import type { product, ProductFormData } from "../schemas/productSchema";
+import { type product, type ProductFormData } from "../schemas/productSchema";
 
 
 export const getProducts = async (): Promise<product[]> => {
@@ -21,6 +21,17 @@ export const createProduct = async (data: ProductFormData): Promise<product> => 
   }
   products.push(newProduct)
   return newProduct
+}
+
+export const updateProduct = async ({data, id}:{data:ProductFormData, id:number}): Promise<product>=>{
+  const index = products.findIndex((prod) => prod.id === id);
+    if (index === -1) {
+      throw new Error("Product not found");
+    }
+    const updatedProduct = { ...products[index], ...data, id };
+    products[index] = updatedProduct;
+    console.log("updated category: ", updatedProduct);
+    return updatedProduct;
 }
 
 export const deleteProduct = async (id: number): Promise<void> => {

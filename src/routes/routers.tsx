@@ -19,6 +19,7 @@ import Cart from "../pages/main/Cart";
 import Checkout from "../pages/main/Checkout";
 import ShowProduct from "../pages/dashboard/products/ShowProduct";
 import CreateProduct from "../pages/dashboard/products/CreateProduct";
+import UpdateProduct from "../pages/dashboard/products/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
           {
             path: "/create-product",
             element: <CreateProduct />,
+          },
+          {
+            path: "/update-product/:id",
+            element: <UpdateProduct />,
           },
         ],
       },
