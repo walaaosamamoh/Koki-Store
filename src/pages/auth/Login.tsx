@@ -35,8 +35,10 @@ function Login() {
       }
     },
   });
+
   return (
-    <div className="container bg-white w-2xl mx-auto p-6 translate-y-50 rounded-lg shadow-md">
+   <div className="min-h-screen flex items-center justify-center p-2">
+     <div className="mx-auto w-full max-w-2xl bg-white p-6 rounded-lg shadow-md">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -54,6 +56,7 @@ function Login() {
             />
           )}
         </form.Field>
+
         <form.Field name="password">
           {(field) => (
             <FormInput
@@ -64,6 +67,7 @@ function Login() {
             />
           )}
         </form.Field>
+
         <button
           type="submit"
           className="bg-yellow-500 text-white cursor-pointer shadow rounded-md mt-6 py-2"
@@ -72,6 +76,7 @@ function Login() {
         </button>
       </form>
     </div>
+   </div>
   );
 }
 
