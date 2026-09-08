@@ -3,6 +3,28 @@ import type { User } from "../schemas/loginSchema";
 import type { product } from "../schemas/productSchema";
 import type { order } from "../types/orders";
 
+// Categories
+import electronicsImage from "../assets/images/electronics.jpg";
+import fashionImage from "../assets/images/fashion.jpg";
+import booksImage from "../assets/images/books.jpg";
+import homeImage from "../assets/images/home.jpg";
+import sportsImage from "../assets/images/sports.jpg";
+
+// Products
+import iphoneImage from "../assets/images/iphone.jpg";
+import samsungImage from "../assets/images/samsung-s24.jpg";
+import macbookImage from "../assets/images/macbook.jpg";
+import airpodsImage from "../assets/images/airpods-pro.jpg";
+import blackTshirtImage from "../assets/images/black-tshirt.jpg";
+import blueJeansImage from "../assets/images/blue-jeans.jpg";
+import leatherJacketImage from "../assets/images/leather-jacket.jpg";
+import jsBookImage from "../assets/images/js-book.jpg";
+import vueBookImage from "../assets/images/vue-book.jpg";
+import coffeeMakerImage from "../assets/images/coffee-maker.jpg";
+import diningTableImage from "../assets/images/dining-table.jpg";
+import footballImage from "../assets/images/football.jpg";
+import tennisRacketImage from "../assets/images/tennis-racket.jpg";
+
 export const users: User[] = [
   {
     id: 1,
@@ -35,31 +57,31 @@ export const categories: category[] = [
     id: 1,
     title: "Electronics",
     description: "Phones, laptops and accessories",
-    image: "https://picsum.photos/400?electronics",
+    image: electronicsImage,
   },
   {
     id: 2,
     title: "Fashion",
     description: "Clothing and accessories",
-    image: "https://picsum.photos/400?fashion",
+    image: fashionImage,
   },
   {
     id: 3,
     title: "Books",
     description: "Educational and fiction books",
-    image: "https://picsum.photos/400?books",
+    image: booksImage,
   },
   {
     id: 4,
     title: "Home",
     description: "Home and kitchen products",
-    image: "https://picsum.photos/400?home",
+    image: homeImage,
   },
   {
     id: 5,
     title: "Sports",
     description: "Sports equipment",
-    image: "https://picsum.photos/400?sports",
+    image: sportsImage,
   },
 ];
 
@@ -69,7 +91,7 @@ export const products: product[] = [
     categoryId: 1,
     title: "iPhone 15",
     description: "Apple smartphone",
-    image: "https://picsum.photos/300?1",
+    image: iphoneImage,
     price: 999,
     stock: 15,
   },
@@ -78,7 +100,7 @@ export const products: product[] = [
     categoryId: 1,
     title: "Samsung Galaxy S24",
     description: "Samsung flagship phone",
-    image: "https://picsum.photos/300?2",
+    image: samsungImage,
     price: 899,
     stock: 20,
   },
@@ -87,7 +109,7 @@ export const products: product[] = [
     categoryId: 1,
     title: "MacBook Air M3",
     description: "Apple laptop",
-    image: "https://picsum.photos/300?3",
+    image: macbookImage,
     price: 1299,
     stock: 10,
   },
@@ -96,7 +118,7 @@ export const products: product[] = [
     categoryId: 1,
     title: "AirPods Pro",
     description: "Wireless earbuds",
-    image: "https://picsum.photos/300?4",
+    image: airpodsImage,
     price: 249,
     stock: 30,
   },
@@ -105,7 +127,7 @@ export const products: product[] = [
     categoryId: 2,
     title: "Black T-Shirt",
     description: "Cotton t-shirt",
-    image: "https://picsum.photos/300?5",
+    image: blackTshirtImage,
     price: 25,
     stock: 50,
   },
@@ -114,7 +136,7 @@ export const products: product[] = [
     categoryId: 2,
     title: "Blue Jeans",
     description: "Slim fit jeans",
-    image: "https://picsum.photos/300?6",
+    image: blueJeansImage,
     price: 45,
     stock: 40,
   },
@@ -123,7 +145,7 @@ export const products: product[] = [
     categoryId: 2,
     title: "Leather Jacket",
     description: "Premium jacket",
-    image: "https://picsum.photos/300?7",
+    image: leatherJacketImage,
     price: 120,
     stock: 18,
   },
@@ -132,7 +154,7 @@ export const products: product[] = [
     categoryId: 3,
     title: "JavaScript Guide",
     description: "Learn JavaScript",
-    image: "https://picsum.photos/300?8",
+    image: jsBookImage,
     price: 30,
     stock: 60,
   },
@@ -141,7 +163,7 @@ export const products: product[] = [
     categoryId: 3,
     title: "Vue.js Essentials",
     description: "Vue fundamentals",
-    image: "https://picsum.photos/300?9",
+    image: vueBookImage,
     price: 35,
     stock: 45,
   },
@@ -150,7 +172,7 @@ export const products: product[] = [
     categoryId: 4,
     title: "Coffee Maker",
     description: "Automatic coffee machine",
-    image: "https://picsum.photos/300?10",
+    image: coffeeMakerImage,
     price: 80,
     stock: 12,
   },
@@ -159,7 +181,7 @@ export const products: product[] = [
     categoryId: 4,
     title: "Dining Table",
     description: "Wooden dining table",
-    image: "https://picsum.photos/300?11",
+    image: diningTableImage,
     price: 250,
     stock: 0,
   },
@@ -168,7 +190,7 @@ export const products: product[] = [
     categoryId: 5,
     title: "Football",
     description: "Professional football",
-    image: "https://picsum.photos/300?12",
+    image: footballImage,
     price: 35,
     stock: 25,
   },
@@ -177,7 +199,7 @@ export const products: product[] = [
     categoryId: 5,
     title: "Tennis Racket",
     description: "Lightweight racket",
-    image: "https://picsum.photos/300?13",
+    image: tennisRacketImage,
     price: 95,
     stock: 14,
   },
