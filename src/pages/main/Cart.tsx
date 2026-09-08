@@ -43,23 +43,20 @@ export default function Cart() {
                         <h3 className="font-semibold text-gray-900 text-lg mb-2">
                           {item.title}
                         </h3>
-                        <p className="text-gray-600 text-sm mb-4">
+                        <p className="text-gray-600 text-sm mb-2">
                           {item.description}
                         </p>
 
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-gray-600 text-sm mb-1">Price</p>
-                            <p className="text-xl font-bold text-yellow-600">
-                              ${item.price}
-                            </p>
-                          </div>
+                        <div className="flex items-center justify-between ">
+                          <p className="text-xl font-bold text-yellow-600">
+                            ${item.price}
+                          </p>
 
-                          <div className="flex items-center gap-8">
-                            <div className="flex items-center gap-2">
+                          <div className="flex items-center md:gap-8 gap-2">
+                            <div className="flex items-center md:gap-2">
                               <button
                                 onClick={() => decreaseQuantity(item.id)}
-                                className="px-3 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition font-semibold"
+                                className="md:px-3 md:py-2 px-2 py-1 bg-gray-200 rounded-lg hover:bg-gray-300 transition font-semibold"
                                 disabled={item.qty === 1}
                               >
                                 -
@@ -70,7 +67,7 @@ export default function Cart() {
                               <button
                                 onClick={() => increaseQuantity(item.id)}
                                 disabled={item.qty >= item.stock}
-                                className="px-3 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="md:px-3 md:py-2 px-2 py-1 bg-gray-200 rounded-lg hover:bg-gray-300 transition font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                               >
                                 +
                               </button>
@@ -83,9 +80,9 @@ export default function Cart() {
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="red"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 className="lucide lucide-trash2-icon lucide-trash-2 cursor-pointer"
                               >
                                 <path d="M10 11v6" />
@@ -122,8 +119,10 @@ export default function Cart() {
                     </p>
                   </div>
 
-                  <Link  to={'/checkout'}
-                  className="block w-full px-6 py-3 text-center bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-semibold text-lg">
+                  <Link
+                    to={"/checkout"}
+                    className="block w-full px-6 py-3 text-center bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-semibold text-lg"
+                  >
                     Proceed to Checkout
                   </Link>
                 </div>

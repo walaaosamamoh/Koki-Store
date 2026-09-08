@@ -113,6 +113,12 @@ export default function Header() {
               >
                 Contact
               </Link>
+              <span
+                onClick={logout}
+                className="block w-full px-2 py-1 hover:bg-gray-100"
+              >
+                Logout
+              </span>
             </div>
           )}
         </div>

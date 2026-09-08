@@ -37,7 +37,7 @@ function Login() {
   });
 
   return (
-   <div className="min-h-screen flex items-center justify-center p-2">
+   <div className="h-screen flex items-center justify-center p-2">
      <div className="mx-auto w-full max-w-2xl bg-white p-6 rounded-lg shadow-md">
       <form
         onSubmit={(e) => {
