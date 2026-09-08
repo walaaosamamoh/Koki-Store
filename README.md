@@ -6,6 +6,21 @@ A responsive e-commerce web application built with React and TypeScript, featuri
 
 [View Live Demo](https://koki-store-gamma.vercel.app/)
 
+## 🔐 Demo Credentials
+
+### Admin
+
+* **Email:** `ahmed@example.com`
+* **Password:** `123456`
+
+### Customer
+
+* **Email:** `omar@example.com`
+* **Password:** `123456`
+
+> These are demo credentials for testing the application.
+
+
 ## ✨ Features
 
 * User authentication and protected routes
