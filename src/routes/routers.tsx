@@ -20,6 +20,7 @@ import Checkout from "../pages/main/Checkout";
 import ShowProduct from "../pages/dashboard/products/ShowProduct";
 import CreateProduct from "../pages/dashboard/products/CreateProduct";
 import UpdateProduct from "../pages/dashboard/products/UpdateProduct";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -62,7 +63,12 @@ export const router = createBrowserRouter([
             element: <Checkout />,
           },
         ],
-      },
+      },     
+    ],
+  },
+  {
+    element: <AdminRoute />,
+    children: [
       {
         element: <DashboardLayout />,
         children: [
@@ -104,7 +110,7 @@ export const router = createBrowserRouter([
           },
         ],
       },
-    ],
+    ]
   },
   {
     path: "*",
